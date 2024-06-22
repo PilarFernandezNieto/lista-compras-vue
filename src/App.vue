@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch, onMounted } from "vue";
 import EncabezadoComponente from "./components/EncabezadoComponente.vue"
 import PieComponente from "./components/PieComponente.vue"
 import ListaItems from "./components/ListaItems.vue";
@@ -19,6 +19,17 @@ let listado = ref([
         prioridad: "alta"
     }
 ])
+
+watch(listado, () => {
+    localStorage.setItem("listado", JSON.stringify(listado.value));
+},
+{deep: true})
+onMounted(() => {
+    const listadoStorage = localStorage.getItem("listado");
+    listado.value =  JSON.parse(listadoStorage) ?? [];
+})
+
+
 
 
 const agregarItem = (nuevoProducto) => {

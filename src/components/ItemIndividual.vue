@@ -4,6 +4,7 @@ const props = defineProps({
    item: Object,
    index: Number
 })
+
 const isEditing = ref(false);
 const editItem = ref({
    producto: props.item.producto,

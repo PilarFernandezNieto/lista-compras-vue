@@ -16,6 +16,10 @@ const handleClick = () => {
     priority.value = "";
 }
 
+const isValid = () => {
+    return ((item.value.length > 2) && (isNaN(item.value)))
+}
+
 </script>
 
 <template>
@@ -29,7 +33,7 @@ const handleClick = () => {
                 <option value="media">🟡 - media</option>
                 <option value="alta">🔴 - alta</option>
             </select>
-            <button v-show="item && priority" @click="handleClick">
+            <button v-show="item && priority && isValid()" @click="handleClick">
                 <font-awesome-icon :icon="['fas', 'plus']" />
             </button>
         </div>
